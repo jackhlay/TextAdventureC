@@ -1,16 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include "headers.h"
 
-#define WIDTH 10
-#define HEIGHT 10
-#define FLOORS 10
-
-typedef enum{	
-	EMPTY, WALL, FLOOR, DOOR
-
-} tiletype;
+int currentFloor = 0;
 
 void generateMap(tiletype map[HEIGHT][WIDTH]){
+	srand(time(NULL));
 	for(int y=0; y<HEIGHT; y++){
 		for(int x=0; x<WIDTH; x++){
 			map[y][x] = WALL;
@@ -19,14 +15,15 @@ void generateMap(tiletype map[HEIGHT][WIDTH]){
 	for (int i=0; i<WIDTH*HEIGHT / 3; i++){
 		int x = rand() % WIDTH;
 		int y = rand() % HEIGHT;
-		map[x][y] = FLOOR;
+		map[y][x] = FLOOR;
 	}
+	currentFloor +=1;
 }
 
-void showMap(tiletype map[HEIGHT][WIDTH]){
+void showMap(tiletype map[HEIGHT][WIDTH]){	
 	for(int y=0; y<HEIGHT; y++){
 		for(int x=0; x<WIDTH; x++){
-			switch (map[x][y]){
+			switch (map[y][x]){
 			case EMPTY: printf(". "); break;
 			case WALL: printf("# "); break;
 			case FLOOR: printf("F "); break;
@@ -37,17 +34,25 @@ void showMap(tiletype map[HEIGHT][WIDTH]){
 		printf("\n");
 
 	}
+	printf("\nCURRENT FLOOR: %d! \n",currentFloor);		
+}
+
+void initializeGame(tiletype floor[HEIGHT][WIDTH], player *p){	
+	system("clear");
+	printf("Text Advanture \n\n");	
+	generateMap(floor);
+	showMap(floor);
+
+	p->pos.x = rand()%WIDTH;
+	p->pos.y = rand()%HEIGHT;
+	p->health = 100;
+	printf("PLAYER POSITION X: %d, Y: %d, HEALTH: %d", p->pos.x,p->pos.y,p->health);
 }
 
 int main()
 {
-
-	printf("Text Advanture \n");
 	tiletype floor[HEIGHT][WIDTH];
-	generateMap(floor);
-	showMap(floor);
-
-	return 0; 
-
+	player p;
+	initializeGame(floor, &p);
+		return 0; 
 }
-
