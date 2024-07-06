@@ -6,7 +6,7 @@
 #include <time.h>
 #include "stack.h"
 
-#define WIDTH 19
+#define WIDTH 10
 #define HEIGHT 10
 #define FLOORS 10
 

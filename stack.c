@@ -45,6 +45,10 @@ int insertHead(node** head, int data)
 
 int decap(node** head)
 {
+	if(*head == NULL){
+		return -1;
+	}
+
 	node* temp = *head;
 	*head = (*head)->next;
 	free(temp);
@@ -66,7 +70,7 @@ void push(node** stack, int data)
 
 int pop(node** stack)
 {
-	if(isEmpty(stack)){
+	if(isEmpty(*stack)){
 		printf("Stack underflow (it's empty)");
 	}
 	int val = (*stack) -> data;
@@ -76,7 +80,7 @@ int pop(node** stack)
 
 int getTop(node** stack)
 {
-	if(!isEmpty(stack)){
+	if(!isEmpty(*stack)){
 		return (*stack)->data;
 	}
 	else{return -1;}
