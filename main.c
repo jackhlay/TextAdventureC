@@ -1,23 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include "headers.h"
 
 int currentFloor = 0;
 
-void generateMap(tiletype map[HEIGHT][WIDTH]){
+position generateMap(tiletype map[HEIGHT][WIDTH]){
 	srand(time(NULL));
 	for(int y=0; y<HEIGHT; y++){
 		for(int x=0; x<WIDTH; x++){
 			map[y][x] = WALL;
 		}
 	}
-	for (int i=0; i<WIDTH*HEIGHT / 3; i++){
-		int x = rand() % WIDTH;
-		int y = rand() % HEIGHT;
-		map[y][x] = FLOOR;
-	}
+	position pos = explore(map);
 	currentFloor +=1;
+	return pos;
 }
 
 void showMap(tiletype map[HEIGHT][WIDTH]){	
@@ -28,6 +22,7 @@ void showMap(tiletype map[HEIGHT][WIDTH]){
 			case WALL: printf("# "); break;
 			case FLOOR: printf("F "); break;
 			case DOOR: printf("D "); break;
+			case PLAYER: printf("P "); break;
 
 			}
 		}
@@ -40,13 +35,25 @@ void showMap(tiletype map[HEIGHT][WIDTH]){
 void initializeGame(tiletype floor[HEIGHT][WIDTH], player *p){	
 	system("clear");
 	printf("Text Advanture \n\n");	
-	generateMap(floor);
+	position posi = generateMap(floor);
+	floor[posi.x][posi.y] = PLAYER;
 	showMap(floor);
 
-	p->pos.x = rand()%WIDTH;
-	p->pos.y = rand()%HEIGHT;
+	p->pos.x = posi.x;
+	p->pos.y = posi.y;
 	p->health = 100;
 	printf("PLAYER POSITION X: %d, Y: %d, HEALTH: %d", p->pos.x,p->pos.y,p->health);
+}
+
+position explore(tiletype floor[HEIGHT][WIDTH])
+{
+	position posi;
+	posi.x = rand() % HEIGHT;
+	posi.y = rand() % WIDTH;
+	printf("starting x: %d. starting y: %d\n", posi.x, posi.y);
+
+	return posi;
+
 }
 
 int main()
