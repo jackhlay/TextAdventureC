@@ -13,6 +13,19 @@ node* createNode(int data)
 	return newNode;
 }
 
+int stackLength(node* head)
+{
+	int length = 0;
+	node* curr = head;
+	while(curr != NULL)
+	{
+		length++;
+		curr = curr->next;
+	
+	}
+	return length; 
+}
+
 int insertHead(node** head, int data)
 {
 	node* newNode = createNode(data);

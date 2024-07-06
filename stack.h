@@ -10,6 +10,7 @@ typedef struct{
 }node;
 
 node* createNode(int data);
+int length(node** head);
 int insertHead(node** head, int data);
 int decap(node** head);
 int isEmpty(node** stack);

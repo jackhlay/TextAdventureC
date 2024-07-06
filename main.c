@@ -61,5 +61,13 @@ int main()
 	tiletype floor[HEIGHT][WIDTH];
 	player p;
 	initializeGame(floor, &p);
+
+	node* stack = NULL;
+	push(&stack, 10);
+	push(&stack, 20);
+	push(&stack, 30);
+
+	printf("\nstack length: %d\n", stackLength(stack));
+	stackPrint(&stack);
 		return 0; 
 }
