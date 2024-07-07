@@ -21,7 +21,6 @@ int stackLength(node* head)
 	{
 		length++;
 		curr = curr->next;
-	
 	}
 	return length; 
 }
@@ -48,7 +47,6 @@ int decap(node** head)
 	if(*head == NULL){
 		return -1;
 	}
-
 	node* temp = *head;
 	*head = (*head)->next;
 	free(temp);
