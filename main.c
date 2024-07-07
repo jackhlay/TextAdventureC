@@ -52,7 +52,6 @@ position explore(tiletype floor[HEIGHT][WIDTH])
 	printf("starting x: %d. starting y: %d\n", posi.x, posi.y);
 	
 	node* greaterStack = NULL;
-	printf("GOT PAST GREATER STACK CREATION\n");
 	int rooms = 0;
 	int startx = posi.x;
 	int starty =  posi.y;
@@ -109,13 +108,13 @@ position explore(tiletype floor[HEIGHT][WIDTH])
 			
 	}
 	
-	printf("Freeing the stack\n");
-	//showMap(floor);
+	//printf("Freeing the stack\n")
 	while(!isEmpty(&greaterStack))
 	{	
-		
-		printf("CURRENT STACK: %s", stackPrint(&greaterStack));
-		pop(&greaterStack);
+		if(&greaterStack == NULL){break;}
+
+		//printf("CURRENT STACK: %s", stackPrint(&greaterStack));
+		int i = pop(&greaterStack);
 	}
 
 	return posi;

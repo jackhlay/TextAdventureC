@@ -1,2 +1,2 @@
 all:
-	cc main.c stack.c -o out -w
+	gcc -g main.c stack.c -o test -w
