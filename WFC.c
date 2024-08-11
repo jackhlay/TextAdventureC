@@ -144,9 +144,11 @@ void printGrid(){
 	}
 }
 
+/*
 int main(){
 	srand(time(NULL));
 	init_Grid();
 	WFC();
 	printGrid();
 }
+*/
