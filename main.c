@@ -3,6 +3,7 @@
 void initializeGame(){	
 	system("clear");
 	printf("Text Advanture \n\n");
+	srand(time(NULL));
 	init_Grid();
 	WFC();
 	printGrid();
