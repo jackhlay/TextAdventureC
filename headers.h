@@ -9,14 +9,16 @@
 #define WIDTH 10
 #define HEIGHT 10
 #define FLOORS 10
+#define GRIDSIZE 10
 
 typedef enum{
 	EMPTY,
-	WALL,
-	FLOOR,
+	WALL, 
 	DOOR,
-	PLAYER
-}tiletype;
+	TREASURE,
+	TRAP,
+	MAXTILE
+}tileType;
 
 typedef enum{
 	UP,
@@ -34,9 +36,9 @@ typedef struct{
 	int health;
 }player;
 
-position generateMap(tiletype map[HEIGHT][WIDTH]);
-void showMap(tiletype map[HEIGHT][WIDTH]);
-void initializeGame(tiletype[HEIGHT][WIDTH], player *p);
-position explore(tiletype[HEIGHT][WIDTH]);
+position generateMap(tileType map[HEIGHT][WIDTH]);
+void showMap(tileType map[HEIGHT][WIDTH]);
+void initializeGame(tileType[HEIGHT][WIDTH], player *p);
+position explore(tileType[HEIGHT][WIDTH]);
 
 #endif

@@ -1,8 +1,9 @@
 #include "headers.h"
 
+
 int currentFloor = 0;
 
-position generateMap(tiletype map[HEIGHT][WIDTH]){
+position generateMap(tileType map[HEIGHT][WIDTH]){
 	srand(time(NULL));
 	for(int y=0; y<HEIGHT; y++){
 		for(int x=0; x<WIDTH; x++){
@@ -14,15 +15,15 @@ position generateMap(tiletype map[HEIGHT][WIDTH]){
 	return pos;
 }
 
-void showMap(tiletype map[HEIGHT][WIDTH]){	
+void showMap(tileType map[HEIGHT][WIDTH]){	
 	for(int y=0; y<HEIGHT; y++){
 		for(int x=0; x<WIDTH; x++){
 			switch (map[y][x]){
 			case EMPTY: printf(". "); break;
 			case WALL: printf("# "); break;
-			case FLOOR: printf("F "); break;
 			case DOOR: printf("D "); break;
-			case PLAYER: printf("P "); break;
+			case TREASURE: printf("L "); break;
+			case TRAP: printf("T "); break;
 
 			}
 		}
@@ -32,7 +33,7 @@ void showMap(tiletype map[HEIGHT][WIDTH]){
 	printf("\nCURRENT FLOOR: %d! \n",currentFloor);		
 }
 
-void initializeGame(tiletype floor[HEIGHT][WIDTH], player *p){	
+void initializeGame(tileType floor[HEIGHT][WIDTH], player *p){	
 	system("clear");
 	printf("Text Advanture \n\n");	
 	position posit = generateMap(floor);
@@ -44,7 +45,7 @@ void initializeGame(tiletype floor[HEIGHT][WIDTH], player *p){
 	printf("PLAYER POSITION X: %d, Y: %d, HEALTH: %d\n", p->pos.x,p->pos.y,p->health);
 }
 
-position explore(tiletype floor[HEIGHT][WIDTH])
+position explore(tileType floor[HEIGHT][WIDTH])
 {
 	position posi;
 	posi.x = rand() % HEIGHT;
@@ -55,7 +56,7 @@ position explore(tiletype floor[HEIGHT][WIDTH])
 	int rooms = 0;
 	int startx = posi.x;
 	int starty =  posi.y;
-	floor[startx][starty] = FLOOR;
+	floor[startx][starty] = EMPTY;
 	
 	while(rooms < 30)
 	{
@@ -95,10 +96,10 @@ position explore(tiletype floor[HEIGHT][WIDTH])
 				continue;
 			}
 
-			printf("MOVING TO x;%d, y:%d MOVES: %d\n\n", startx, starty, rooms);
+			//printf("MOVING TO x;%d, y:%d MOVES: %d\n\n", startx, starty, rooms);
 
 			push(&greaterStack, chosenDir);
-			floor[startx][starty] = FLOOR;
+			floor[startx][starty] = EMPTY;
 			rooms++;
 
 		} else{
@@ -111,9 +112,7 @@ position explore(tiletype floor[HEIGHT][WIDTH])
 	//printf("Freeing the stack\n")
 	while(!isEmpty(&greaterStack))
 	{	
-		if(&greaterStack == NULL){break;}
 
-		//printf("CURRENT STACK: %s", stackPrint(&greaterStack));
 		int i = pop(&greaterStack);
 	}
 
@@ -123,7 +122,7 @@ position explore(tiletype floor[HEIGHT][WIDTH])
 
 int main()
 {
-	tiletype floor[HEIGHT][WIDTH];
+	tileType floor[HEIGHT][WIDTH];
 	player p;
 	initializeGame(floor, &p);
 
