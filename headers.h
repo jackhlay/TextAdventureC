@@ -5,20 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "stack.h"
-
-#define WIDTH 10
-#define HEIGHT 10
-#define FLOORS 10
-#define GRIDSIZE 10
-
-typedef enum{
-	EMPTY,
-	WALL, 
-	DOOR,
-	TREASURE,
-	TRAP,
-	MAXTILE
-}tileType;
+#include "WFC.h"
 
 typedef enum{
 	UP,
@@ -36,9 +23,6 @@ typedef struct{
 	int health;
 }player;
 
-position generateMap(tileType map[HEIGHT][WIDTH]);
-void showMap(tileType map[HEIGHT][WIDTH]);
-void initializeGame(tileType[HEIGHT][WIDTH], player *p);
-position explore(tileType[HEIGHT][WIDTH]);
+void initializeGame(void);
 
 #endif
