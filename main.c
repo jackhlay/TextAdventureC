@@ -1,7 +1,4 @@
 #include "headers.h"
-//#include "WFC.h"
-
-//Cell grid[GRIDSIZE][GRIDSIZE];
 
 void initializeGame(){	
 	system("clear");
