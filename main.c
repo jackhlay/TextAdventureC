@@ -1,5 +1,6 @@
 #include "headers.h"
 
+
 void initializeGame(){	
 	system("clear");
 	printf("Text Advanture \n\n");
@@ -13,5 +14,4 @@ int main()
 {
 	player p;
 	initializeGame();
-		return 0; 
 }

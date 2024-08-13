@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "stack.h"
+#include <unistd.h>
 #include "WFC.h"
 
 typedef enum{
